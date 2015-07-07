@@ -17,15 +17,15 @@ while (~keyIsDown && t<params.responseVar.dur)
             break;
         else 
             if keyCode(KbName('ESCAPE')),  
-                Screen('CloseAll'); error('Experiment stopped by user!');
+                screen('CloseAll'); error('Experiment stopped by user!');
             else
                 clear secs2 keyCode
                 keyIsDown = 0;
             end
+            resp.check = 1;
         end
-        resp.check = 0;
     else
-        resp.check = 0;
+        
     end
     t=toc;
 end

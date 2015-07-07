@@ -42,7 +42,6 @@ stim.boundaryAngleRad = stim.boundaryAngle*pi/180;
 
 stim.radiusPix = deg2pix1Dim(stim.radiusDeg, ratioX);
 stim.durInFrames = round(stim.dur*screenVar.monRefresh);
-stim.apertureCenterPix = [stim.apertureCenter(1)*screenVar.degratioX, stim.apertureCenter(3)*screenVar.degratioY];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Stair params 

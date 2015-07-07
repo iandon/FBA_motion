@@ -13,8 +13,7 @@ allPos.y = r.*params.stim.radiusDeg.*sin(q);
 dxdy = zeros(params.dots.num,2); 
 dxdy_dirc 	= repmat(params.stim.speedDegPerMsec * (1000/params.screenVar.monRefresh) * [cos(pi*trialAngle/180.0) sin(pi*trialAngle/180.0)], params.dots.num,1);
 
-dxdy(:,1) =  dxdy(:,1).*params.screenVar.degratioX;
-dxdy(:,2) =  dxdy(:,2).*params.screenVar.degratioY;
+dxdy(1,:) =  dxdy(1,:)*
 
 
 %Compute motion according to direction, wrap if necessary and randomly

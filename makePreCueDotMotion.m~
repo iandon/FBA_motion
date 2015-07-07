@@ -2,15 +2,12 @@ function preCueMotion = makePreCueDotMotion
 global params
 
 
-dxdy_dirc.right = params.stim.speedDegPerSec * (1/params.screenVar.monRefresh) * [cos(0) sin(0)];
+dxdy_dirc.right = params.stim.speedDegPerMsec * (1/params.screenVar.monRefresh) * [cos(0) sin(0)];
 
-dxdy_dirc.right(:,1) = dxdy_dirc.right(:,1).*params.screenVar.degratioX;
-dxdy_dirc.right(:,2) = dxdy_dirc.right(:,2).*params.screenVar.degratioY;
+dxdy_dirc.right(1,:) = dxdy_dirc.right(1,:).*params.screenVar.degratioX;
+dxdy_dirc.right(2,:) = dxdy_dirc.right(2,:).*params.screenVar.degratioY;
 
-dxdy_dirc.left 	= params.stim.speedDegPerSec * (1/params.screenVar.monRefresh) * [cos(pi) sin(pi)];
-
-dxdy_dirc.left(:,1) = dxdy_dirc.left(:,1).*params.screenVar.degratioX;
-dxdy_dirc.left(:,2) = dxdy_dirc.left(:,2).*params.screenVar.degratioY;
+dxdy_dirc.left 	= params.stim.speedDegPerMsec * (1/params.screenVar.monRefresh) * [cos(pi) sin(pi)];
 
 % 
 % q = rand(params.dots.num,1)*pi*2; 

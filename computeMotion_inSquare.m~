@@ -2,15 +2,11 @@ function [allPosPix, dircs]= computeMotion_inSquare(trialAngle,dotCoh)
 global params; 
 % Compute motion direction for coherent motion
 dxdy = zeros(params.dots.num,2); 
-dxdy_dirc 	= repmat(params.stim.speedDegPerSec * (1/params.screenVar.monRefresh) * [cos(pi*trialAngle/180.0) sin(pi*trialAngle/180.0)], params.dots.num,1);
-
-dxdy(:,1) =  dxdy(:,1).*params.screenVar.degratioX;
-dxdy(:,2) =  dxdy(:,2).*params.screenVar.degratioY;
-
+dxdy_dirc 	= repmat(params.stim.speed * (1/params.screenVar.monRefresh) * [cos(pi*trialAngle/180.0) sin(pi*trialAngle/180.0)], params.dots.num,1);
 
 % Compute motion direction for NON coherent motion (random directions)
 randDirc = randi(360,params.dots.num,1); 
-dxdy_rand 	= (params.stim.speedDegPerSec * (1/params.screenVar.monRefresh) * [cos(pi*randDirc/180.0) sin(pi*randDirc/180.0)]);
+dxdy_rand 	= (params.stim.speed * (1/params.screenVar.monRefresh) * [cos(pi*randDirc/180.0) sin(pi*randDirc/180.0)]);
 
 % Calculate which dots will be moving coherently to direction trial angle
 % and which not
@@ -25,8 +21,8 @@ dircs(~L) = randDirc(~L);
 % [allPos.x,allPos.y] = pol2cart(randAnglesRad,randAmps);
 q = rand(params.dots.num,1)*pi*2; 
 r = (rand(params.dots.num,1)).^0.5;
-allPos.x = r.*params.stim.radiusDeg.*cos(q)+params.stim.apertureCenterPix(1);
-allPos.y = r.*params.stim.radiusDeg.*sin(q)+params.stim.apertureCenterPix(2);
+allPos.x = r.*params.stim.radiusDeg.*cos(q);
+allPos.y = r.*params.stim.radiusDeg.*sin(q);
 
 %Compute motin according to direction, wrap if necessary and randomly
 %re-assign postions if limited lifetime for dots
