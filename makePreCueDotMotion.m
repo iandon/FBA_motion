@@ -29,9 +29,9 @@ for i =2:params.preCueVars.durInFrames
         preCueMotion.right.x(:,i) = preCueMotion.right.x(:,i-1)+dxdy_dirc.right(:,1);
         preCueMotion.right.y(:,i) = allPos.y;
         
-        preCueMotion.left.x(:,i) = preCueMotion.right.x(:,i-1)+dxdy_dirc.left(:,1);
-        preCueMotion.left.y(:,i) = allPos.y(1);
+        preCueMotion.left.x(:,i) = preCueMotion.left.x(:,i-1)+dxdy_dirc.left(:,1);
+        preCueMotion.left.y(:,i) = allPos.y;
 end
 
-
+params.preCueMotion = preCueMotion;
 

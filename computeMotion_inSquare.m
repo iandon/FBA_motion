@@ -25,8 +25,8 @@ dircs(~L) = randDirc(~L);
 % [allPos.x,allPos.y] = pol2cart(randAnglesRad,randAmps);
 q = rand(params.dots.num,1)*pi*2; 
 r = (rand(params.dots.num,1)).^0.5;
-allPos.x = r.*params.stim.radiusDeg.*cos(q)+params.stim.apertureCenterPix(1);
-allPos.y = r.*params.stim.radiusDeg.*sin(q)+params.stim.apertureCenterPix(2);
+allPos.x = r.*params.stim.radiusDeg.*cos(q);
+allPos.y = r.*params.stim.radiusDeg.*sin(q);
 
 %Compute motin according to direction, wrap if necessary and randomly
 %re-assign postions if limited lifetime for dots
@@ -49,5 +49,5 @@ for i = 2:params.stim.durInFrames
     end
 end
 %Transform to pixels from visual degrees
-allPosPix.x = floor(params.screenVar.ppd .* allPos.x)+ params.screenVar.centerPix(1); 
-allPosPix.y = floor(params.screenVar.ppd .* allPos.y)+ params.screenVar.centerPix(2);	
+allPosPix.x = floor(params.screenVar.ppd .* allPos.x)+ params.screenVar.centerPix(1)-params.stim.apertureCenterPix(1); 
+allPosPix.y = floor(params.screenVar.ppd .* allPos.y)+ params.screenVar.centerPix(2)-params.stim.apertureCenterPix(2);	

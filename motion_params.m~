@@ -1,7 +1,7 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      screen params 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-screenVar = struct('num', {max(Screen('Screens'))}, 'rectPix',{[0 0  1280 960]}, 'dist', {57}, 'size', {[40 30]},...
+screenVar = struct('num', {max(Screen('Screens'))}, 'rectPix',{[0 0  1280 1024]}, 'dist', {57}, 'size', {[40 30]},...
                    'res', {[1280 960 ]},'monRefresh', 85, 'calib_filename', {'0001_titchener_130226.mat'}); 
 screenVar.centerPix = [screenVar.rectPix(3)/2 screenVar.rectPix(4)/2];
 white = 255; black = 0;
@@ -42,6 +42,7 @@ stim.boundaryAngleRad = stim.boundaryAngle*pi/180;
 
 stim.radiusPix = deg2pix1Dim(stim.radiusDeg, ratioX);
 stim.durInFrames = round(stim.dur*screenVar.monRefresh);
+stim.apertureCenterPix = [stim.apertureCenter(1)*screenVar.degratioX, stim.apertureCenter(3)*screenVar.degratioY];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Stair params 
@@ -112,7 +113,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      PreCue params
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-preCueVars = struct('dur', .05,'vertDistDeg',1);
+preCueVars = struct('dur', .1,'vertDistDeg',1);
 
 preCueVars.horizDistDeg = (stim.speedDegPerSec/2)*preCueVars.dur;
 

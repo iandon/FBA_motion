@@ -13,7 +13,7 @@ numRepeats = 15; %how many times does each trial type repeat?
 
 
 
-horizDirPossible = [180,0]; % L vs R
+horizDirPossible = [-1,1]; % L vs R
 vertDirPossible  = [-1,1]; % ccw vs cw
 cueTypePossible  = [0,1,2];%neut vs valid vs invalid
 

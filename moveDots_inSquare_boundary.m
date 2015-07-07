@@ -1,10 +1,15 @@
-function moveDots_inSquare_boundary(startclut,allPosPix, wPtr,trialAngle)
+function moveDots_inSquare_boundary(startclut,allPosPix, wPtr,trialAngle,stimOrPreCue)
 global params; 
 Screen('BlendFunction', wPtr, GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+if stimOrPreCue == 1
+    durInFrames = params.stim.durInFrames;
+else
+    durInFrames = params.preCueVars.durInFrames;
+end
 
 
-for frame=1:params.stim.durInFrames      
+for frame=1:durInFrames     
     allDots = [allPosPix.x(:,frame), allPosPix.y(:,frame)]';
     allDots = allDots-repmat(params.screenVar.centerPix', 1, size(allDots,2));
     c = params.screenVar.centerPix;
@@ -16,7 +21,8 @@ for frame=1:params.stim.durInFrames
     
     
     Screen('DrawingFinished',wPtr,0);
-    Screen('Flip', wPtr,0,0); 
+    Screen('Flip', wPtr,0,0);
+    clear allDors
 end 
 
 if params.oval.fixation, fixation(wPtr); end; 

@@ -1,7 +1,7 @@
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      screen params 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-screenVar = struct('num', {max(Screen('Screens'))}, 'rectPix',{[0 0  1280 960]}, 'dist', {57}, 'size', {[40 30]},...
+screenVar = struct('num', {1}, 'rectPix',{[0 0  1280 960]}, 'dist', {57}, 'size', {[40 30]},...
                    'res', {[1280 960 ]},'monRefresh', 85, 'calib_filename', {'0001_titchener_130226.mat'}); 
 screenVar.centerPix = [screenVar.rectPix(3)/2 screenVar.rectPix(4)/2];
 white = 255; black = 0;
@@ -28,7 +28,7 @@ fixationVar.rectPix = [0 0 fixationVar.sizeCrossDeg(1)*screenVar.degratioX fixat
 %      stimuli params 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 stim = struct('dur', {.2}, 'possibleAngels', {[-1 1]},'boundaryAngle', {[0 0]},...
-              'radiusDeg',{5}, 'bkColor', {gray}, 'speedDegPerSec', {15},'lifetime', {1},...
+              'radiusDeg',{3}, 'bkColor', {gray}, 'speedDegPerSec', {15},'lifetime', {1},...
               'limitLifetime', {0.05},'apertureCenter',[-5,0,-5,0]);
 % [3 357 183 177]
 %cw/ccw: Note, response is encoded in responseVar.cw_ccw = [1 2]. Any changes must be done there as well
@@ -72,7 +72,7 @@ stairVars = struct('stimRange',stimValsRangeSTAIR,'stimRangeDisplay',stimValsRan
 %      Dot params 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 dots = struct( 'color',{black},'sizeInPix', {4});
-numdotsperdeg = 1.65;
+numdotsperdeg = 3; %1.65
 dots.num = round(numdotsperdeg*(pi*(stim.radiusDeg)^2)); % 1 dot per deg/deg
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -85,16 +85,6 @@ oval.rectPix = [screenVar.centerPix(1)-xoval, screenVar.centerPix(2)-yoval, scre
 oval.present = 1; %whether to present the black oval within the circle of dots
 oval.fixation = 1; %whether to present a fixation in the oval or not
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% %            boundary params 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% boundary = struct( 'color',{[black black black 255]},'penWidthPix', {2}, 'present',{0}, 'lengthDeg', {0.3}); 
-% 
-% boundary.innerRadiusPix = stim.radiusPix + 2*screenVar.degratioX;
-% outerRadiusDeg = stim.radiusDeg + boundary.lengthDeg;
-% boundary.outerRadiusPix = ratioX*outerRadiusDeg;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     response params
@@ -113,7 +103,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      PreCue params
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-preCueVars = struct('dur', .05,'vertDistDeg',1);
+preCueVars = struct('dur', .1,'vertDistDeg',1);
 
 preCueVars.horizDistDeg = (stim.speedDegPerSec/2)*preCueVars.dur;
 
@@ -165,7 +155,7 @@ textVars = struct('color', black, 'bkColor', gray, 'size', 24);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     ISI params
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-ISIVars = struct('postDur', {0.7},'preOrder',1);
+ISIVars = struct('postDur', {0.05},'preOrder',2);
 
 switch ISIVars.preOrder
     case 1

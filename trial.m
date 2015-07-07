@@ -111,9 +111,9 @@ while ~fixBreak && (ts < cumulativeDur.total) && ~pressQ
         if cueType == 0
                 neutPreCue(wPtr)
         elseif cueDir == 1 
-            moveDots_inSquare_boundary(startclut,params.preCueMotion.right, wPtr, trialAngle); %%%%% draw dots; Screen('Flip', wPtr);%%%% draw cue
+            moveDots_inSquare_boundary(startclut,params.preCueMotion.right, wPtr, trialAngle,0); %%%%% draw dots; Screen('Flip', wPtr);%%%% draw cue
         elseif cueDir == -1 
-            moveDots_inSquare_boundary(startclut,params.preCueMotion.left, wPtr, trialAngle);
+            moveDots_inSquare_boundary(startclut,params.preCueMotion.left, wPtr, trialAngle,0);
         end
         timestamp.preCue = ts;
         if preCueON < 2, preCueON = preCueON + 1; end
@@ -124,7 +124,7 @@ while ~fixBreak && (ts < cumulativeDur.total) && ~pressQ
         if preCueOFF < 2 , preCueOFF = preCueOFF + 1; end
     elseif ts < cumulativeDur.stim
         if stimON == 1, Eyelink('Message', sprintf('Stimulus ON')); end
-        moveDots_inSquare_boundary(startclut,allPosPix, wPtr, trialAngle); %%%%% draw dots
+        moveDots_inSquare_boundary(startclut,allPosPix, wPtr, trialAngle,1); %%%%% draw dots
         fixation(wPtr); Screen('Flip', wPtr);
         timestamp.stim = ts;
         if stimON < 2, stimON = stimON + 1; end
